@@ -1,0 +1,19 @@
+# cyxj-agent-rec
+
+> Background terminal recorder for AI coding agents on macOS (command `rec`). The agent opens a terminal in a private tmux server (`tmux -L agent-rec`), types (`rec type`), presses keys (`rec key`), reads the screen (`rec screen`, `rec wait --claude`), and asciinema records everything. `rec export` re-renders the recording with CoreText using Terminal.app's cell rules and the macOS 26 window frame, with idle compression, spinner speed-up and chapters, and writes a 4K MP4 through ffmpeg. `rec win` records real pixels of one window or app with ScreenCaptureKit. Never sends system key events or moves the mouse. Python 3.11+, MIT licensed. CLI messages are in Chinese.
+
+## Docs
+- [README (English)](README.md): features, comparison, install, commands, export details, FAQ
+- [README (中文)](README.zh-CN.md): 中文说明
+- [CHANGELOG](CHANGELOG.md): versions and test environment
+- [CLAUDE.md](CLAUDE.md): module map and every pitfall hit while building it (tmux, pyte, Terminal.app cell metrics, ScreenCaptureKit), in Chinese
+
+## Source
+- [agentrec/cli.py](agentrec/cli.py): argparse CLI, all commands and flags
+- [agentrec/session.py](agentrec/session.py): tmux server + asciinema; type, key, paste, screen, mark, stop
+- [agentrec/term.py](agentrec/term.py): pyte terminal emulation with dim and private-sequence filtering; asciicast v2/v3 reader
+- [agentrec/render.py](agentrec/render.py): CoreText cell renderer, themes, Terminal.app window frame
+- [agentrec/export.py](agentrec/export.py): replay, timeline (idle compression, speed-up), frame rendering, ffmpeg pipe
+- [agentrec/window.py](agentrec/window.py): `rec win` wrapper around the Swift helper
+- [capture/Sources/rec-capture/main.swift](capture/Sources/rec-capture/main.swift): ScreenCaptureKit window/app recorder, screenshots, distributed notifications
+- [tests/test_core.py](tests/test_core.py): unit tests

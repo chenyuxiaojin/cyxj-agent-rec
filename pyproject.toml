@@ -1,0 +1,34 @@
+[project]
+name = "agent-rec"
+version = "0.1.0"
+description = "Background terminal recorder for AI agents on macOS: the agent drives its own tmux terminal and exports Terminal.app-accurate MP4, without touching your keyboard or mouse."
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [{name = "chenyuxiaojin"}]
+requires-python = ">=3.11"
+keywords = ["terminal-recorder", "screen-recording", "ai-agent", "claude-code", "tmux", "asciinema", "macos", "demo-video"]
+classifiers = [
+    "Environment :: Console",
+    "Operating System :: MacOS",
+    "Programming Language :: Python :: 3",
+    "Topic :: Multimedia :: Video :: Capture",
+    "Topic :: Terminals",
+]
+dependencies = ["pyte>=0.8.2", "pillow>=10", "pyobjc-framework-CoreText>=10", "pyobjc-framework-Quartz>=10"]
+
+[project.urls]
+Homepage = "https://github.com/chenyuxiaojin/cyxj-agent-rec"
+Changelog = "https://github.com/chenyuxiaojin/cyxj-agent-rec/blob/main/CHANGELOG.md"
+
+[project.scripts]
+rec = "agentrec.cli:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["agentrec"]
+
+[tool.setuptools.package-data]
+agentrec = ["tmux.conf", "assets/*.png"]

@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.egg-info/
+*.mp4
+*.png
+!agentrec/assets/*.png
+!docs/*.png
+.build/
+.DS_Store
